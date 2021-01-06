@@ -8,13 +8,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           lfs: true
-      - uses: RafikFarhad/push-to-gcr-github-action@v3
+      - name: deploy
+        working-directory: ./action-a
+        uses: RafikFarhad/push-to-gcr-github-action@v3
         with:
           gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
           registry: gcr.io
           project_id: nitraai
           image_name: server-end
-          dockerfile: ./action-a/Dockerfile
+          # dockerfile: ./action-a/Dockerfile
       # - uses: ./action-a
       #   with:
       #     MY_NAME: "Mona"
